@@ -1,13 +1,24 @@
-
-import React from "react";
-import './../styles/App.css';
+import React, { useState } from 'react';
+import './App.css';
+import ChildComponent1 from './ChildComponent1';
+import ChildComponent2 from './ChildComponent2';
 
 const App = () => {
-  return (
-    <div>
-        {/* Do not remove the main div */}
-    </div>
-  )
-}
+  const [selectedOption, setSelectedOption] = useState("");
 
-export default App
+  const updateSelectedOption = (option) => {
+    setSelectedOption(option);
+  };
+
+  return (
+    <div className="parent">
+      <h1>Selected Option: {selectedOption}</h1>
+      
+      {/* Render child components and pass down props */}
+      <ChildComponent1 updateSelectedOption={updateSelectedOption} />
+      <ChildComponent2 updateSelectedOption={updateSelectedOption} />
+    </div>
+  );
+};
+
+export default App;
